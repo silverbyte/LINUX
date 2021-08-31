@@ -142,6 +142,47 @@ find /home/ -name “abc”
 echo Find files greater than 10000k in the home folder
 find /home -size +10000k
 
+# ─── GREP CHEAT SHEET ────────────────────────────────────────────────────────
+echo -i	Forgets about case sensitivity
+grep -i ^DA demo.txt
+
+echo -w	Search only for the full word
+grep -w "of" demo.txt
+
+echo -A	Display 3 lines after matching string
+grep -A 3 'Exception' error.log
+
+echo -B	Display 4 lines before matching string
+grep -B 4 'Exception' error.log
+
+echo -C	Display 5 lines around matching string
+grep -C 5 'Exception' error.log
+
+echo -r	Recursive search (within subdirs)
+grep -r 'quickref.me' /var/log/nginx/
+
+echo -v	Return all lines which don't match the pattern
+grep -v 'warning' /var/log/syslog
+
+echo -e	Use regex (lines starting with 'al')
+grep -e '^al' filename
+
+echo -E	filename	Extended regex (lines containing jason or jackson)
+grep -E 'ja(s|cks)on'
+
+echo -c	Count the number of matches
+grep -c 'error' /var/log/syslog
+
+echo -l	Print the name of the file(s) of matches
+grep -l 'robot' /var/log/*
+
+echo -o	Only show the matching part of the string
+grep -o search_string filename
+
+echo -n	Show the line numbers of the matches
+grep -n "go" demo.txt
+
+
 
 # ─── DISK USAGE ──────────────────────────────────────────────────────────────
 df -h 		:Displays free space on mounted systems
