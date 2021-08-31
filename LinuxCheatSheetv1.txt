@@ -1,0 +1,233 @@
+# ─── SYSTEM ──────────────────────────────────────────────────────────────────
+uname			:Displays Linux system information
+uname -r 		:Displays kernel release information
+uptime 			:Displays system UPTIME including load average
+hostname 		:Shows the system hostname
+hostname -i 	:Displays the IP address of the system
+last reboot 	:Shows system reboot history
+date 			:Displays current system date and time
+timedatectl 	:Query and change the System clock
+cal 			:Displays the current calendar month and day
+w 				:Displays currently logged in users in the system
+whoami 			:Displays who you are logged in as
+finger username :Displays information about the user
+
+# ─── HARDWARE ────────────────────────────────────────────────────────────────
+df -h				:LIST ALL DRIVES CONNECTED TO COMPUTER
+dmesg 				:Displays bootup messages
+lshw 				:Display system’s hardware configuration
+lsblk 				:Displays block devices related information
+free -m 			:Displays free and used memory in the system 
+						(-m flagindicates memory in MB)
+lspci -tv 			:Displays PCI devices in a tree-like diagram
+lsusb -tv 			:Displays USB devices in a tree-like diagram
+dmidecode 			:Displays hardware information from the BIOS
+cat /proc/cpuinfo 	:Displays CPU model, name, cores, vendor id
+cat /proc/meminfo 	:Displays hardware memory, Total and Free memory
+hdparm -i /dev/xda 	:Displays information about disk data
+hdparm -tT /dev/xda :Conducts a read speed test on device xda
+
+# ─── PROCESS RELATED ─────────────────────────────────────────────────────────
+ps 						:Display currently active processes
+ps aux | grep ‘telnet’	:Searches for the id of the process ‘telnet’
+pmap 					:Displays memory map of processes
+top 					:Displays all running processes
+kill pid 				:Terminates process with a given pid
+killall proc 			:Kills / Terminates all processes named proc
+pkill process-name 		:Sends a signal to a process with its name
+bg 						:Resumes suspended jobs in the background
+fg 						:Brings suspended jobs to the foreground
+fg n 					:Brings job n to the foreground
+lsof 					:Lists files that are open by processes
+renice 19 PID 			:Makes a process run with very low priority
+pgrep firefox 			:Find Firefox process ID
+pstree 					:Visualizing processes in tree model
+
+# USERS
+id 					:Displays details of active user uid, gid, and groups
+last 				:Shows the last logins in the system
+who 				:Shows who is logged in to the system
+groupadd “admin”	:Adds the group ‘admin’
+adduser “Sam” 		:Adds user Sam
+userdel “Sam” 		:Deletes user Sam
+usermod 			:Used for changing / modifying user information
+
+# ─── FILE COMMANDS ───────────────────────────────────────────────────────────
+ls -alF 			:Lists files 
+						(-al flag: regular,hidden files & permissions)
+						(-F display directory/)
+pwd 				:Displays the current directory file path
+mkdir ‘dir_name’ 	:Creates a new directory
+rm file_name 		:Removes a file
+rm -f filename 		:Forcefully removes a file
+rm -r dir_name 		:Removes a directory recursively
+rm -rf dir_name 	:Removes a directory forcefully and recursively
+cp file1 file2 		:Copies the contents of file1 to file2
+cp -r dir1 dir2 	:Recursively Copies dir1 to dir2. 
+						dir2 is created if it does not exist
+mv file1 file2 		:Renames file1 to file2
+ln -s /path/filename linkname :Creates a symbolic link to file_name
+touch file_name 	:Creates a new file
+cat > file_name 	:Places standard input into a file
+more file_name 		:Outputs the contents of a file
+head file_name 		:Displays the first 10 lines of a file
+tail file_name 		:Displays the last 10 lines of a file
+gpg -c file_name 	:Encrypts a file
+gpg file_name.gpg 	:Decrypts a file
+wc 					:Prints the number of bytes, words and lines in a file
+xargs 				:Executes commands from standard input
+
+# ─── FILE PERMISSIONS ────────────────────────────────────────────────────────
+echo Set rwx permissions to owner, group and everyone else who has access
+chmod 777 /data/test.c	
+
+echo Set rwx to the owner and r_x to group and everyone
+chmod 755 /data/test.c 	
+
+echo Sets rwx for owner, rw for group and everyone
+chmod 766 /data/test.c 	
+
+echo Change ownership of the file
+chown owner user-file 	
+
+echo Change owner and group owner of the file
+chown owner-user: owner-group file_name
+
+echo Change owner and group owner of the directory
+chown owner-user:owner-groupdirectory
+
+
+# ─── NETWORK ─────────────────────────────────────────────────────────────────
+echo Assigns IP address 192.168.0.1 with subnet mask 255.255.255.0 to eth0 
+ip address add 192.168.0.1/24 dev eth0 
+
+ip addr show 	:Displays IP addresses and all the network interfaces
+ifconfig 		:Displays IP addresses of all network interfaces
+ping host 		:ICMP :request to establish host
+whois domain 	:Retrieves more information about a domain name
+dig domain 		:Retrieves DNS information about the domain
+dig -x host 	:Performs reverse lookup on a domain
+host google.com :Performs an IP lookup for the domain name
+hostname -i 	:Displays local IP address
+wget file_name 	:Downloads a file from an online source
+netstat -pnltu 	:Displays all active listening ports
+
+# ─── COMPRESSION ─────────────────────────────────────────────────────────────
+echo Creates archive file ‘home.tar’ from file ‘home’
+tar -cf home.tar home	
+
+echo Extract archive file ‘files.tar’
+tar -xf files.tar 		
+
+echo Creates gzipped tar archive file from source folder
+tar -zcvf home.tar.gz source-folder 
+
+echo Compression a file with .gz extension
+gzip file 				
+
+
+# ─── SEARCH ──────────────────────────────────────────────────────────────────
+echo Search for a given pattern in files
+grep ‘pattern’ files 	
+
+echo Search recursively for pattern in a given dir
+grep -r pattern dir 	
+
+echo Find all instances of the file
+locate file 			
+
+echo Find file names that begin with ‘abc’ in /home 
+find /home/ -name “abc”	
+
+echo Find files greater than 10000k in the home folder
+find /home -size +10000k
+
+
+# ─── DISK USAGE ──────────────────────────────────────────────────────────────
+df -h 		:Displays free space on mounted systems
+df -i 		:Displays free inodes on filesystems
+fdisk -l 	:Shows disk partitions, sizes, and types
+du -sh 		:Displays disk usage in current directory in human-readable format
+findmnt 	:Displays target mount point for all filesystems
+mount device-path mount-point : mount device
+				
+# ─── FILE TRANSFER ───────────────────────────────────────────────────────────
+echo Securely copy file1.txt to server2 in /tmp directory
+scp file1.txt server2/tmp
+
+echo Synchronize contents in /home/apps directory with /backup 
+rsync -a /home/apps /backup/
+
+
+# ─── REMOTE FILE TRANSFERS ───────────────────────────────────────────────────
+echo Upload File to someone with verbosity
+scp -v /path/tofile user@10.0.0.123:~/path/to/destination/in/home/dir 
+								
+echo Download File from remote connection								
+scp username@10.0.0.123:/path/file.txt /local/path/to/destination
+								
+echo Copy the file from remote host "rh1.edu" to remote host "rh2.edu"
+scp user@rh1.edu:/path/foobar.txt user@rh2.edu:/path/directory/
+
+echo Copy the file from local host to a remote host using port 2264
+scp -P 2264 foobar.txt user@rh.edu:/path/directory
+		
+
+# ─── BASH DATE EXAMPLE ───────────────────────────────────────────────────────
+ %a     locale's abbreviated weekday name (e.g., Sun)
+ %A     locale's full weekday name (e.g., Sunday)
+ %b     locale's abbreviated month name (e.g., Jan)
+ %B     locale's full month name (e.g., January)
+ %c     locale's date and time (e.g., Thu Mar  3 23:05:25 2005)
+ %C     century; like %Y, except omit last two digits (e.g., 20)
+ %d     day of month (e.g, 01)
+ %D     date; same as %m/%d/%y
+ %e     day of month, space padded; same as %_d
+ %F     full date; same as %Y-%m-%d
+ %g     last two digits of year of ISO week number (see %G)
+ %G     year of ISO week number (see %V); normally useful only with %V
+ %h     same as %b
+ %H     hour (00..23)
+ %I     hour (01..12)
+ %j     day of year (001..366)
+ %k     hour ( 0..23)
+ %l     hour ( 1..12)
+ %m     month (01..12)
+ %M     minute (00..59)
+ %N     nanoseconds (000000000..999999999)
+ %p     locale's equivalent of either AM or PM; blank if not known
+ %P     like %p, but lower case
+ %r     locale's 12-hour clock time (e.g., 11:11:04 PM)
+ %R     24-hour hour and minute; same as %H:%M
+ %s     seconds since 1970-01-01 00:00:00 UTC
+ %S     second (00..60)
+ %T     time; same as %H:%M:%S
+ %u     day of week (1..7); 1 is Monday
+ %U     week number of year, with Sunday as first day of week (00..53)
+ %V     ISO week number, with Monday as first day of week (01..53)
+ %w     day of week (0..6); 0 is Sunday
+ %W     week number of year, with Monday as first day of week (00..53)
+ %x     locale's date representation (e.g., 12/31/99)
+ %X     locale's time representation (e.g., 23:13:48)
+ %y     last two digits of year (00..99)
+ %Y     year
+ %z     +hhmm numeric timezone (e.g., -0400)
+ %:z    +hh:mm numeric timezone (e.g., -04:00)
+ %::z   +hh:mm:ss numeric time zone (e.g., -04:00:00)
+ %Z     alphabetic time zone abbreviation (e.g., EDT)
+
+Examples:
+echo `date +%d_%b_%Y`
+10_Sep_2018
+
+echo `date +%D`
+09/10/18
+
+echo `date +%F-%T1
+2018-09-10-11:09:51
+
+echo today is  `date +%A`
+today is Monday
+
+echo Its `date +%d` of `date +%B" "%Y` and time is `date +%r`
+Its 10 of September 2018 and time is 11:13:42 AM
