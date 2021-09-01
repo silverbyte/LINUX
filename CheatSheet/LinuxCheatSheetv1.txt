@@ -272,3 +272,4 @@ today is Monday
 
 echo Its `date +%d` of `date +%B" "%Y` and time is `date +%r`
 Its 10 of September 2018 and time is 11:13:42 AM
+
